@@ -1,0 +1,1 @@
+import{j as s,a as t}from"./app-a6b78a93.js";import{H as r}from"./HomeLayout-ec7f2c8f.js";import e from"./Post-d47ec859.js";const m=()=>s.jsx(s.Fragment,{children:s.jsxs(r,{children:[s.jsx(t,{title:"anggit.dev"}),s.jsx("div",{class:"grid grid-cols-1 gap-8 mt-6 lg:mt-10 mb-20",children:s.jsx(e,{})})]})});export{m as default};
