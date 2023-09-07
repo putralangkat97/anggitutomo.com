@@ -1,3 +1,33 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+.laravel {
+    text-decoration: underline;
+    -webkit-text-decoration-color: #FB503B;
+    text-decoration-color: #FB503B;
+}
+
+.livewire {
+    text-decoration: underline;
+    -webkit-text-decoration-color: #FB70A9;
+    text-decoration-color: #FB70A9;
+}
+
+.alpine {
+    text-decoration: underline;
+    -webkit-text-decoration-color: #77C1D2;
+    text-decoration-color: #77C1D2;
+}
+
+.tailwind {
+    text-decoration: underline;
+    -webkit-text-decoration-color: #38BDF8;
+    text-decoration-color: #38BDF8;
+}
+
+.react {
+    text-decoration: underline;
+    -webkit-text-decoration-color: #61DAFB;
+    text-decoration-color: #61DAFB;
+}
