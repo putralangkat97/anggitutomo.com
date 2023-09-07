@@ -1,7 +1,7 @@
 import LinkedinIcon from '@/Components/Icons/Linkedin';
 import TwitterIcon from '@/Components/Icons/Twitter';
-import GithubIcon from '@/Components/Icons/github';
-import InstagramIcon from '@/Components/Icons/instagram';
+import GithubIcon from '@/Components/Icons/Github';
+import InstagramIcon from '@/Components/Icons/Instagram';
 import { Link } from '@inertiajs/react';
 
 const Footer = () => {
