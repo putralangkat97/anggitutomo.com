@@ -4,7 +4,7 @@ RUN apk add --no-cache nginx supervisor wget
 
 RUN mkdir -p /run/nginx
 
-COPY docker/nginx.conf /etc/nginx/nginx.conf
+COPY ci/nginx.conf /etc/nginx/nginx.conf
 
 RUN mkdir -p /app
 COPY . /app
@@ -16,4 +16,4 @@ RUN cd /app && \
 RUN chown -R www-data: /app
 RUN docker-php-ext-install pdo pdo_mysql
 
-CMD sh /app/docker/startup.sh
+CMD sh /app/ci/startup.sh
