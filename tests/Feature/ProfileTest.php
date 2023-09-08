@@ -20,7 +20,8 @@ test('profile information can be updated', function () {
             'email' => 'test@example.com',
         ]);
 
-    $response->assertSessionHasNoErrors();
+    $response->assertSessionHasNoErrors()
+        ->assertRedirect('/backend/profile');
 
     $user->refresh();
 
@@ -38,7 +39,8 @@ test('email verification status is unchanged when the email address is unchanged
             'email' => $user->email,
         ]);
 
-    $response->assertSessionHasNoErrors();
+    $response->assertSessionHasNoErrors()
+        ->assertRedirect('/backend/profile');
 
     $this->assertNotNull($user->refresh()->email_verified_at);
 });
