@@ -11,8 +11,6 @@ class DashboardController extends Controller
 {
     public function dashboard()
     {
-        return Inertia::render('Admin/Dashboard', [
-            'user' => Auth::user(),
-        ]);
+        return Inertia::render('Admin/Dashboard');
     }
 }

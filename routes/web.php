@@ -24,6 +24,8 @@ Route::middleware('auth')->group(function () {
                 ->name('post.')
                 ->group(function () {
                     Route::get('/post', 'index')->name('index');
+                    Route::get('/post/new', 'create')->name('create');
+                    Route::post('/post/new', 'store')->name('store');
                 });
 
             Route::controller(ProfileController::class)

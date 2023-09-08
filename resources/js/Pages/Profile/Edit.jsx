@@ -3,10 +3,10 @@ import UpdatePasswordForm from './Partials/UpdatePasswordForm';
 import UpdateProfileInformationForm from './Partials/UpdateProfileInformationForm';
 import AdminLayout from '@/Layouts/AdminLayout';
 
-export default function Edit({ user, mustVerifyEmail, status }) {
+export default function Edit({ auth, mustVerifyEmail, status }) {
   return (
     <AdminLayout
-      user={user}
+      user={auth.user}
       title={
         <h2 className="font-semibold text-xl text-gray-800 leading-tight">
           Dashboard
