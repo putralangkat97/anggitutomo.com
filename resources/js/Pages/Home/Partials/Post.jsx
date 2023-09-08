@@ -1,13 +1,8 @@
 const Post = () => {
   return (
-    <div className="mt-4 prose lg:prose-xl max-w-none prose-h2:text-gray-900 prose-h6:text-gray-900 prose-a:text-cyan-500">
-      <h1 className="font-bold mb-1 text-gray-900">
-        Lorem ipsum dolor sit amet.
-      </h1>
-      <h3 className="mb-4 text-sm text-gray-900">
-        published 02 Sep 2023
-      </h3>
-      <div className="text-gray-900">
+    <div className="mt-4 prose lg:prose-xl max-w-none prose-h2:text-zinc-900 prose-h6:text-zinc-900 prose-a:text-orange-500">
+      <h1 className="font-bold text-zinc-900">Lorem ipsum dolor sit amet.</h1>
+      <div className="text-zinc-900">
         <p>
           Lorem ipsum, dolor sit amet consectetur adipisicing elit. Est
           voluptatibus placeat maiores. Placeat, minima temporibus velit
@@ -33,6 +28,7 @@ const Post = () => {
           hic voluptatibus rerum praesentium!
         </p>
       </div>
+      <p>published at 07 September 2023</p>
     </div>
   );
 };
