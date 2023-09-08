@@ -7,7 +7,7 @@ import TailwindIcon from '@/Components/Icons/Tailwind';
 const Jumbotron = () => {
   return (
     <>
-      <div className="flex mt-8 lg:mt-16 items-center">
+      <div className="flex lg:mt-16 items-center">
         <div className="w-full lg:1/2 space-y-3 text-center sm:text-left">
           <h1 className="text-zinc-950 text-2xl lg:text-4xl font-bold">
             Hi, I'm Anggit
@@ -28,8 +28,8 @@ const Jumbotron = () => {
             ,{' '}
             <span className="font-bold alpine hover:text-[#77C1D2] transition-color duration-300">
               AlpineJS
-            </span>
-            {' '}and{' '}
+            </span>{' '}
+            and{' '}
             <span className="font-bold react hover:text-[#61DAFB] transition-color duration-300">
               ReactJS
             </span>

@@ -7,7 +7,7 @@ const View = () => {
     <>
       <HomeLayout>
         <Head title="anggit.dev" />
-        <div class="grid grid-cols-1 gap-8 mt-6 lg:mt-10 mb-20">
+        <div className="grid grid-cols-1 gap-4 mt-6 lg:mt-10 mb-20">
           <Post />
         </div>
       </HomeLayout>

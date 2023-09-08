@@ -3,22 +3,26 @@ import { Link } from '@inertiajs/react';
 const Posts = () => {
   return (
     <>
-      <Link
-        href={route('post.view', 'post-view')}
-        className="hover:opacity-75 transition-opacity duration-300"
-      >
-        <div className="text-zinc-950 mt-4">
+      <div className="text-zinc-950 border p-4 shadow-sm">
+        <Link
+          href={route('post.show', 'post-view')}
+          className="hover:text-orange-500 transition-all duration-300"
+        >
           <h1 className="text-2xl font-bold mb-2">Lorem, ipsum dolor.</h1>
-          <p>
-            Lorem ipsum dolor sit amet consectetur adipisicing elit. Ex dolores
-            id quis fuga! Pariatur consequuntur enim perferendis! Quam ducimus
-            animi aliquam expedita cum adipisci, tempora atque a facilis cumque
-            dolorem voluptatem delectus excepturi, nemo, saepe architecto
-            similique exercitationem cupiditate impedit pariatur eum quaerat!
-            Incidunt sed ducimus distinctio adipisci quisquam repudiandae?
-          </p>
-        </div>
-      </Link>
+        </Link>
+        <p className="text-lg mb-4">
+          Lorem ipsum dolor sit amet consectetur adipisicing elit.
+          Exercitationem beatae dignissimos quaerat quod illum nesciunt
+          consectetur vero sapiente quis, minus numquam aliquam. Doloribus aut,
+          cum enim sit temporibus praesentium commodi!
+        </p>
+        <Link
+          href={route('post.show', 'post-view')}
+          className="hover:text-orange-500 transition-all duration-300"
+        >
+          <span className="flex justify-end">Read More</span>
+        </Link>
+      </div>
     </>
   );
 };
