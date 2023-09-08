@@ -12,6 +12,9 @@ jobs:
         with:
           php-version: '8.2'
       - uses: actions/checkout@v3
+      - uses: actions/setup-node@v3
+        with:
+          node-version: 18
       - name: Copy .env
         run: php -r "file_exists('.env') || copy('.env.example', '.env');"
       - name: Install Dependencies
@@ -32,9 +35,6 @@ jobs:
         name: List the state of node modules
         continue-on-error: true
         run: npm list
-      - uses: actions/setup-node@v3
-        with:
-          node-version: 18
       - name: Install Node Modules
         run: npm install && npm run build
       - name: Generate key
