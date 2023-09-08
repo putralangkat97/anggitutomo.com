@@ -14,7 +14,7 @@ const Sidebar = ({ user }) => {
           <div className="flex-shrink-0 px-4 md:px-6 lg:px-8 py-4 lg:py-8 flex flex-row items-center justify-between">
             <Link
               href={route('admin.dashboard')}
-              className="text-lg font-semibold tracking-widest text-gray-900 uppercase dark-mode:text-white focus:outline-none focus:shadow-outline"
+              className="text-lg font-semibold tracking-widest text-gray-900 uppercase focus:outline-none focus:shadow-outline"
             >
               <ApplicationLogo className="w-8 h-8 inline -mt-1 mr-3" />
               anggitutomo.com
