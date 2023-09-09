@@ -7,7 +7,8 @@ const AdminLayout = ({
   head = 'anggitutomo.com',
   children,
 }) => {
-    const { auth } = usePage().props
+  const { auth } = usePage().props;
+
   return (
     <>
       <Head title={head} />
