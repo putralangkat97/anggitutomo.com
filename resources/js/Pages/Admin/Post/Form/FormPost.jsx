@@ -8,22 +8,15 @@ import { useEffect, useState } from 'react';
 import Select from 'react-select';
 import slugify from 'react-slugify';
 
-const FormPost = () => {
+const FormPost = ({ tags }) => {
   const { data, setData, post, processing, errors, reset } = useForm({
     title: '',
     slug: '',
     content: '',
     tag: [],
   });
-  const [value, setValue] = useState();
 
-//   const listenPost = (e) => {
-//     // console.log();
-//     setData({
-//       title: e.target.value,
-//       slug: slugify(e.target.value),
-//     });
-//   };
+  const [value, setValue] = useState();
 
   const submit = (e) => {
     e.preventDefault();
@@ -41,20 +34,11 @@ const FormPost = () => {
     setData('slug', slugify(data.title));
   }, [data.title]);
 
-  const tags = [
-    { value: 'laravel', label: 'Laravel' },
-    { value: 'livewire', label: 'Livewire' },
-    { value: 'php', label: 'PHP' },
-    { value: 'vue', label: 'VueJS' },
-    { value: 'react', label: 'ReactJS' },
-    { value: 'inertia', label: 'InertiaJS' },
-  ];
-
   return (
     <form onSubmit={submit}>
-      <div className="grid grid-cols-1 gap-4">
-        <div>
-          <InputLabel htmlFor="title" value="Post Titile" />
+      <div className="grid grid-cols-1 grid-cols-2 gap-4">
+        <div className="">
+          <InputLabel htmlFor="title" value="Post Title" />
 
           <TextInput
             id="title"
@@ -62,6 +46,7 @@ const FormPost = () => {
             name="title"
             value={data.title}
             className="mt-1 block w-full"
+            placeholder="Title"
             onChange={(e) => setData('title', e.target.value)}
           />
 
@@ -83,22 +68,8 @@ const FormPost = () => {
           <InputError message={errors.slug} className="mt-2" />
         </div>
 
-        <div>
-          <InputLabel htmlFor="title" value="Content" />
-
-          <div data-color-mode="light">
-            <MDEditor
-              height={190}
-              value={value}
-              onChange={(val) => setValue(val)}
-            />
-          </div>
-
-          <InputError message={errors.content} className="mt-2" />
-        </div>
-
-        <div>
-          <InputLabel htmlFor="tag" value="Post Titile" />
+        <div className="col-span-2">
+          <InputLabel htmlFor="tag" value="Tag" />
 
           <Select
             isMulti
@@ -109,6 +80,20 @@ const FormPost = () => {
           <input type="hidden" name="tag[]" value={data.tag} />
 
           <InputError message={errors.tag} className="mt-2" />
+        </div>
+
+        <div className="col-span-2">
+          <InputLabel htmlFor="content" value="Content" />
+
+          <div data-color-mode="light">
+            <MDEditor
+              height={280}
+              value={value}
+              onChange={(val) => setValue(val)}
+            />
+          </div>
+
+          <InputError message={errors.content} className="mt-2" />
         </div>
       </div>
 
