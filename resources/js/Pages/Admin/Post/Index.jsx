@@ -1,9 +1,11 @@
+import Pagination from '@/Components/Admin/Pagination';
 import Status from '@/Components/Admin/Status';
 import EditIcon from '@/Components/Icons/Edit';
 import EyeIcon from '@/Components/Icons/Eye';
 import PrimaryLinkButton from '@/Components/PrimaryLinkButton';
 import AdminLayout from '@/Layouts/AdminLayout';
 import { Link } from '@inertiajs/react';
+import moment from 'moment';
 
 const Post = ({ posts }) => {
   return (
@@ -25,8 +27,8 @@ const Post = ({ posts }) => {
           </tr>
         </thead>
         <tbody>
-          {posts &&
-            posts.map((item, key) => (
+          {posts.data.length > 0 &&
+            posts.data.map((item, key) => (
               <tr className="bg-gray-50" key={key}>
                 <td className="text-left p-6">
                   <Link
@@ -37,7 +39,9 @@ const Post = ({ posts }) => {
                   </Link>
                 </td>
                 <td className="text-left p-6">
-                  {item.status !== 'published' ? '-' : item.updated_at}
+                  {item.status !== 'published'
+                    ? '-'
+                    : moment(item.updated_at).format('DD/MM/YYYY h:m A')}
                 </td>
                 <td className="text-center p-6">
                   <Status status={item.status} />
@@ -62,6 +66,7 @@ const Post = ({ posts }) => {
             ))}
         </tbody>
       </table>
+      <Pagination class="mt-6" links={posts.links} />
     </>
   );
 };

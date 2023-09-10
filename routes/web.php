@@ -29,6 +29,7 @@ Route::middleware('auth')->group(function () {
                     Route::get('/post/{id}/show', 'show')->name('show');
                     Route::get('/post/{id}/edit', 'edit')->name('edit');
                     Route::patch('/post/{id}/edit', 'update')->name('update');
+                    Route::patch('/post/{id}/publish', 'published')->name('publish');
                 });
 
             Route::controller(ProfileController::class)

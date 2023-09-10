@@ -12,19 +12,34 @@ use Throwable;
 
 class PostRepository implements PostInterfaces
 {
-    public function getAllPosts()
+    public function getAllPosts($home = false)
     {
+        $posts = Post::query();
+        if ($home == true) {
+            $posts = $posts->where('status', 'published')
+                ->take(6)->get();
+        } else {
+            $posts = $posts->select(['id', 'title', 'status', 'updated_at'])
+                ->paginate(10);
+        }
+
         return [
-            'posts' => Post::select(['id', 'title', 'status', 'created_at'])
-                ->get(),
+            'posts' => $posts,
         ];
     }
 
-    public function getPostById($post_id)
+    public function getPostById($post_id = null, $slug = null)
     {
+        $post = Post::query()->with('tags');
+        if ($post_id) {
+            $post = $post->where('id', $post_id)->first();
+        }
+        if ($slug) {
+            $post = $post->where('slug', $slug)->first();
+        }
+
         return [
-            'post' => Post::with('tags')->where('id', $post_id)
-                ->first(),
+            'post' => $post,
         ];
     }
 

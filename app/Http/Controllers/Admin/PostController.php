@@ -37,7 +37,7 @@ class PostController extends Controller
 
     public function show($id)
     {
-        $data = $this->postRepository->getPostById($id);
+        $data = $this->postRepository->getPostById(post_id: $id);
         return Inertia::render('Admin/Post/View', $data);
     }
 

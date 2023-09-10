@@ -9,17 +9,19 @@ interface PostInterfaces
     /**
      * Get all posts
      *
+     * @param bool $home
      * @method GET /backend/post
      */
-    public function getAllPosts();
+    public function getAllPosts($home = false);
 
     /**
      * Get post by id
      *
-     * @param [int] $post_id
+     * @param int $post_id
+     * @param string $slug
      * @method GET /backend/post/$post_id
      */
-    public function getPostById($post_id);
+    public function getPostById($post_id, $slug = null);
 
     /**
      * Crate post
@@ -39,7 +41,7 @@ interface PostInterfaces
     /**
      * Edit post
      *
-     * @param [int] $post_id
+     * @param int $post_id
      * @method GET /backend/post/$post_id/edit
      */
     public function editPost($post_id);
@@ -48,7 +50,7 @@ interface PostInterfaces
      * Update post
      *
      * @param PostRequest $request
-     * @param [int] $post_id
+     * @param int $post_id
      * @method PATCH /backend/post/$post_id/edit
      */
     public function updatePost(PostRequest $request, $post_id);
@@ -56,7 +58,7 @@ interface PostInterfaces
     /**
      * Published a post
      *
-     * @param [int] $post_id
+     * @param int $post_id
      * @method PATCH /backend/post/$post_id/published
      */
     public function publishPost($post_id);
@@ -64,7 +66,7 @@ interface PostInterfaces
     /**
      * Drafted a post
      *
-     * @param [int] $post_id
+     * @param int $post_id
      * @method PATCH /backend/post/$post_id/drafted
      */
     public function draftPost($post_id);

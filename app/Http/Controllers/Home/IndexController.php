@@ -3,23 +3,31 @@
 namespace App\Http\Controllers\Home;
 
 use App\Http\Controllers\Controller;
+use App\Repositories\Post\PostRepository;
 use Illuminate\Http\Request;
 use Inertia\Inertia;
 
 class IndexController extends Controller
 {
+    public function __construct(
+        protected PostRepository $postRepository
+    ) {}
+
     public function index()
     {
-        return Inertia::render('Home/Index');
+        $data = $this->postRepository->getAllPosts(true);
+        return Inertia::render('Home/Index', $data);
     }
 
     public function blog()
     {
-        return Inertia::render('Home/Blog');
+        $data = $this->postRepository->getAllPosts(true);
+        return Inertia::render('Home/Blog', $data);
     }
 
     public function show($slug)
     {
-        return Inertia::render('Home/View');
+        $data = $this->postRepository->getPostById(slug: $slug);
+        return Inertia::render('Home/View', $data);
     }
 }

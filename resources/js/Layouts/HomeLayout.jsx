@@ -1,18 +1,21 @@
+import { Head } from '@inertiajs/react';
 import Footer from './Partials/Footer';
 import Navigation from './Partials/Navigation';
 
-export default function HomeLayout({ children }) {
+export default function HomeLayout({ children, head = '' }) {
   return (
     <>
-        <div className="min-h-screen max-w-5xl mx-auto">
-          <div className="mx-8">
-            <Navigation />
+      <Head title={head} />
 
-            {children}
-          </div>
+      <div className="min-h-screen max-w-5xl mx-auto">
+        <div className="mx-8">
+          <Navigation />
 
-          <Footer />
+          {children}
         </div>
+
+        <Footer />
+      </div>
     </>
   );
 }
