@@ -1,10 +1,10 @@
-<?
+<?php
 
-namespace App\Repositories\Post;
+namespace App\Interfaces\Post;
 
 use App\Http\Requests\PostRequest;
 
-interface PostInterfaces
+interface PostInterface
 {
     /**
      * Get all posts

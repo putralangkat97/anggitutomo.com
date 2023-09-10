@@ -12,7 +12,7 @@ class RepositoryServiceProvider extends ServiceProvider
     public function register(): void
     {
         $this->app->bind(
-            'App\Repositories\Post\PostInterfaces',
+            'App\Interfaces\Post\PostInterface',
             'App\Repositories\Post\PostRepository'
         );
     }

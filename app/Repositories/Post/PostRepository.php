@@ -3,6 +3,7 @@
 namespace App\Repositories\Post;
 
 use App\Http\Requests\PostRequest;
+use App\Interfaces\Post\PostInterface;
 use App\Models\Post;
 use App\Models\Tag;
 use Illuminate\Support\Facades\Auth;
@@ -10,7 +11,7 @@ use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Log;
 use Throwable;
 
-class PostRepository implements PostInterfaces
+class PostRepository implements PostInterface
 {
     public function getAllPosts($home = false)
     {
