@@ -26,6 +26,9 @@ Route::middleware('auth')->group(function () {
                     Route::get('/post', 'index')->name('index');
                     Route::get('/post/new', 'create')->name('create');
                     Route::post('/post/new', 'store')->name('store');
+                    Route::get('/post/{id}/show', 'show')->name('show');
+                    Route::get('/post/{id}/edit', 'edit')->name('edit');
+                    Route::patch('/post/{id}/edit', 'update')->name('update');
                 });
 
             Route::controller(ProfileController::class)

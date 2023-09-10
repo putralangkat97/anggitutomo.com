@@ -67,11 +67,6 @@ const Sidebar = ({ user }) => {
             <div className="lg:hidden mt-6 lg:mt-0">
               <span className="text-gray-500 text-sm">{user.name}</span>
               <div className="flex flex-row items-center mb-3 text-gray-900 hover:text-orange-500 mt-2">
-                <Link href={route('admin.profile.edit')} className="">
-                  <span className="">Profile</span>
-                </Link>
-              </div>
-              <div className="flex flex-row items-center mb-3 text-gray-900 hover:text-orange-500 mt-2">
                 <Link href={route('logout')} as="button" method="POST">
                   <span className="">Logout</span>
                 </Link>
