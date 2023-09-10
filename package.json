@@ -22,6 +22,8 @@
     },
     "dependencies": {
         "@uiw/react-md-editor": "^3.23.5",
+        "moment": "^2.29.4",
+        "react-markdown": "^8.0.7",
         "react-select": "^5.7.4",
         "react-slugify": "^3.0.2"
     }

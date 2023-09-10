@@ -1,18 +1,22 @@
 import HomeLayout from '@/Layouts/HomeLayout';
 import Post from './Partials/Post';
-import { Head } from '@inertiajs/react';
 
-const View = () => {
+const View = ({ post }) => {
   return (
     <>
-      <HomeLayout>
-        <Head title="anggit.dev" />
-        <div className="grid grid-cols-1 gap-4 mt-6 lg:mt-10 mb-20">
-          <Post />
-        </div>
-      </HomeLayout>
+      <div className="grid grid-cols-1 gap-4 mt-6 lg:mt-10 mb-20">
+        {post && (
+          <Post
+            title={post.title}
+            content={post.content}
+            time={post.updated_at}
+          />
+        )}
+      </div>
     </>
   );
 };
+
+View.layout = (page) => <HomeLayout children={page} head={'post title'} />;
 
 export default View;
