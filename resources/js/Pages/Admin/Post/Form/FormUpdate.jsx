@@ -6,7 +6,6 @@ import { useForm } from '@inertiajs/react';
 import MDEditor from '@uiw/react-md-editor';
 import { useEffect, useState } from 'react';
 import Select from 'react-select';
-import slugify from 'react-slugify';
 
 const FormUpdate = ({ tags, dataEdit, postTag }) => {
   const { data, setData, patch, processing, errors, reset } = useForm({
@@ -14,6 +13,7 @@ const FormUpdate = ({ tags, dataEdit, postTag }) => {
     slug: dataEdit.slug,
     content: dataEdit.content,
     tag: postTag,
+    status: dataEdit.status,
   });
 
   const [value, setValue] = useState(dataEdit.content);
@@ -31,8 +31,13 @@ const FormUpdate = ({ tags, dataEdit, postTag }) => {
   }, [value]);
 
   useEffect(() => {
-    setData('slug', slugify(data.title));
+    setData('slug', slugTitle(data.title));
   }, [data.title]);
+
+  const slugTitle = (value) => {
+    let replaceSpace = value.replace(" ", "-")
+    return replaceSpace.toLowercase()
+  }
 
   return (
     <form onSubmit={submit}>
@@ -98,6 +103,8 @@ const FormUpdate = ({ tags, dataEdit, postTag }) => {
           <InputError message={errors.content} className="mt-2" />
         </div>
       </div>
+
+      <TextInput type="hidden" name="status" value={data.status} />
 
       <PrimaryButton className="mt-10" disabled={processing}>
         Submit

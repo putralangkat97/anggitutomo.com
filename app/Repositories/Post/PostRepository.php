@@ -121,7 +121,9 @@ class PostRepository implements PostInterface
 
         $validated['slug'] = $request->input('slug');
         $validated['tag'] = $request->input('tag');
-        $validated['status'] = 'draft';
+        $request->status == 'draft'
+            ? $validated['status'] = 'draft'
+            : $validated['status'] = $request->status;
 
         $tags = [];
         foreach ($validated['tag'] as $tag) {

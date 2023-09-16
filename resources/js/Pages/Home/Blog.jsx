@@ -9,7 +9,7 @@ const Blog = ({ posts }) => {
       </div>
       <hr className="text-left" />
 
-      <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 mt-6 lg:mt-10">
+      <div className="grid grid-cols-1 gap-8 mt-6 lg:mt-10">
         {posts.length > 0 &&
           posts.map((item, key) => (
             <div key={key}>

@@ -4,19 +4,13 @@ import { ReactMarkdown } from 'react-markdown/lib/react-markdown';
 const Posts = ({ title, content, slug }) => {
   return (
     <>
-      <div className="text-zinc-950 border p-4 shadow-sm">
+      <div className="text-zinc-950">
         <Link
           href={route('post.show', slug)}
-          className="hover:text-orange-500 transition-all duration-300"
+          className="transition-all duration-300"
         >
-          <h1 className="text-2xl font-bold mb-2">{title}</h1>
-        </Link>
-        <ReactMarkdown>{content}</ReactMarkdown>
-        <Link
-          href={route('post.show', slug)}
-          className="flex justify-end hover:text-orange-500 transition-all duration-300"
-        >
-          Read More
+          <h1 className="text-2xl font-bold mb-2 hover:underline">{title}</h1>
+          <span className='hover:underline'>Read More</span>
         </Link>
       </div>
     </>
