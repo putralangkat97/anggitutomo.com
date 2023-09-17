@@ -8,11 +8,11 @@ const Jumbotron = () => {
   return (
     <>
       <div className="flex lg:mt-16 items-center">
-        <div className="w-full lg:1/2 space-y-3 text-center sm:text-left">
-          <h1 className="text-zinc-950 text-2xl lg:text-4xl font-bold">
+        <div className="w-full md:w-3/4 space-y-3 text-left">
+          <h1 className="text-zinc-950 text-2xl lg:text-3xl font-bold">
             Hi, I'm Anggit
           </h1>
-          <p className="text-2xl lg:text-4xl text-zinc-950">
+          <p className="text-2xl lg:text-3xl text-zinc-950">
             I'm a fullstack developer who loves code with{' '}
             <span className="font-bold laravel hover:text-[#FB503B] transition-color duration-300">
               Laravel
@@ -36,7 +36,7 @@ const Jumbotron = () => {
           </p>
         </div>
 
-        <div className="lg:w-1/2 lg:block lg:flex space-x-5 hidden lg:ml-4 px-5 py-2">
+        {/* <div className="lg:w-1/2 hidden lg:flex space-x-5 lg:ml-4 px-5 py-2">
           <div className="py-2 self-center hover:opacity-75 transition-opacity duration-300">
             <LaravelIcon />
           </div>
@@ -52,7 +52,7 @@ const Jumbotron = () => {
           <div className="py-2 self-center hover:opacity-75 transition-opacity duration-300">
             <ReactIcon />
           </div>
-        </div>
+        </div> */}
       </div>
     </>
   );

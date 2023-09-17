@@ -17,6 +17,6 @@ const View = ({ post }) => {
   );
 };
 
-View.layout = (page) => <HomeLayout children={page} head={'post title'} />;
+View.layout = (page) => <HomeLayout children={page} head={page.props.post.title} />;
 
 export default View;

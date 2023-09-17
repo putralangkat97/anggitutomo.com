@@ -34,9 +34,9 @@ const FormPost = ({ tags }) => {
   }, [data.title]);
 
   const slugTitle = (value) => {
-    let replaceSpace = value.replace(" ", "-")
-    return replaceSpace.toLowercase()
-  }
+    let replaceSpace = value.replace(' ', '-');
+    return replaceSpace.toLowercase();
+  };
 
   return (
     <form onSubmit={submit}>

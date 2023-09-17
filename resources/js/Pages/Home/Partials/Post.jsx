@@ -1,7 +1,7 @@
 import moment from 'moment';
 import { ReactMarkdown } from 'react-markdown/lib/react-markdown';
 import { Prism as SyntaxHighlighter } from 'react-syntax-highlighter';
-import { materialOceanic } from 'react-syntax-highlighter/dist/cjs/styles/prism';
+import { oneDark } from 'react-syntax-highlighter/dist/cjs/styles/prism';
 
 const Post = ({ title, content, time, tag = null }) => {
   return (
@@ -14,7 +14,7 @@ const Post = ({ title, content, time, tag = null }) => {
             const match = /language-(\w+)/.exec(className || '');
             return !inline && match ? (
               <SyntaxHighlighter
-                style={materialOceanic}
+                style={oneDark}
                 PreTag="div"
                 language={match[1]}
                 children={String(children).replace(/\n$/, '')}
