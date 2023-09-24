@@ -41,7 +41,7 @@ const Post = ({ posts }) => {
                 <td className="text-left p-6">
                   {item.status !== 'published'
                     ? '-'
-                    : moment(item.updated_at).format('DD/MM/YYYY h:m A')}
+                    : moment(item.updated_at).format('DD/MM/YYYY hh:mm A')}
                 </td>
                 <td className="text-center p-6">
                   <Status status={item.status} />

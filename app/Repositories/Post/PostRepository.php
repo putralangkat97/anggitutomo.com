@@ -166,4 +166,17 @@ class PostRepository implements PostInterface
             'status' => 'draft'
         ]) ? true : false;
     }
+
+    public function showPostByTag($tag)
+    {
+        $post_tag = Post::whereHas(
+            'tags',
+            fn ($query) => $query->where('name', $tag)
+        )->get();
+
+        return [
+            'post_tag' => $post_tag,
+            'tag' => $tag == 'php' ? strtoupper($tag) : ucfirst($tag),
+        ];
+    }
 }
