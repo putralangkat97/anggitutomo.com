@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\Admin\DashboardController;
 use App\Http\Controllers\Admin\PostController;
+use App\Http\Controllers\Admin\TagController;
 use App\Http\Controllers\Home\IndexController;
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
@@ -22,15 +23,29 @@ Route::middleware('auth')->group(function () {
 
             Route::controller(PostController::class)
                 ->name('post.')
+                ->prefix('/post')
                 ->group(function () {
-                    Route::get('/post', 'index')->name('index');
-                    Route::get('/post/new', 'create')->name('create');
-                    Route::post('/post/new', 'store')->name('store');
-                    Route::get('/post/{id}/show', 'show')->name('show');
-                    Route::get('/post/{id}/edit', 'edit')->name('edit');
-                    Route::patch('/post/{id}/edit', 'update')->name('update');
-                    Route::patch('/post/{id}/publish', 'published')->name('publish');
-                    Route::patch('/post/{id}/draft', 'drafted')->name('draft');
+                    Route::get('/', 'index')->name('index');
+                    Route::get('/new', 'create')->name('create');
+                    Route::post('/new', 'store')->name('store');
+                    Route::get('/{id}/show', 'show')->name('show');
+                    Route::get('/{id}/edit', 'edit')->name('edit');
+                    Route::patch('/{id}/edit', 'update')->name('update');
+                    Route::patch('/{id}/publish', 'published')->name('publish');
+                    Route::patch('/{id}/draft', 'drafted')->name('draft');
+                });
+
+            Route::controller(TagController::class)
+                ->name('tag.')
+                ->prefix('/tag')
+                ->group(function () {
+                    Route::get('/', 'index')->name('index');
+                    Route::get('/new', 'create')->name('create');
+                    Route::post('/new', 'store')->name('store');
+                    Route::get('/{id}/edit', 'edit')->name('edit');
+                    Route::patch('/{id}/edit', 'update')->name('update');
+                    Route::patch('/{id}/hide', 'hide')->name('hide');
+                    Route::patch('/{id}/show', 'show')->name('show');
                 });
 
             Route::controller(ProfileController::class)

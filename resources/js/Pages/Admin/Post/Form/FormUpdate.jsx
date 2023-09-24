@@ -107,7 +107,7 @@ const FormUpdate = ({ tags, dataEdit, postTag }) => {
       <TextInput type="hidden" name="status" value={data.status} />
 
       <PrimaryButton className="mt-10" disabled={processing}>
-        Submit
+        Update
       </PrimaryButton>
     </form>
   );

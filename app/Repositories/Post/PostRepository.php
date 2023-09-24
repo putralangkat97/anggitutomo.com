@@ -148,7 +148,7 @@ class PostRepository implements PostInterface
             return true;
         } catch (Throwable $t) {
             DB::rollBack();
-            Log::error('create-post', $t->getMessage());
+            Log::error('update-post', $t->getMessage());
             return false;
         }
     }
