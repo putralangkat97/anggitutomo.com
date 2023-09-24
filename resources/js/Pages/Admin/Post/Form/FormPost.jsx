@@ -6,6 +6,7 @@ import { useForm } from '@inertiajs/react';
 import MDEditor from '@uiw/react-md-editor';
 import { useEffect, useState } from 'react';
 import Select from 'react-select';
+import slugify from 'react-url-slugify';
 
 const FormPost = ({ tags }) => {
   const { data, setData, post, processing, errors, reset } = useForm({
@@ -30,13 +31,8 @@ const FormPost = ({ tags }) => {
   }, [value]);
 
   useEffect(() => {
-    setData('slug', slugTitle(data.title));
+    setData('slug', slugify(data.title));
   }, [data.title]);
-
-  const slugTitle = (value) => {
-    let replaceSpace = value.replace(' ', '-');
-    return replaceSpace.toLowercase();
-  };
 
   return (
     <form onSubmit={submit}>

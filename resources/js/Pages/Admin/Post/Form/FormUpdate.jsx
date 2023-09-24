@@ -1,3 +1,4 @@
+import Status from '@/Components/Admin/Status';
 import InputError from '@/Components/InputError';
 import InputLabel from '@/Components/InputLabel';
 import PrimaryButton from '@/Components/PrimaryButton';
@@ -6,6 +7,7 @@ import { useForm } from '@inertiajs/react';
 import MDEditor from '@uiw/react-md-editor';
 import { useEffect, useState } from 'react';
 import Select from 'react-select';
+import slugify from 'react-url-slugify';
 
 const FormUpdate = ({ tags, dataEdit, postTag }) => {
   const { data, setData, patch, processing, errors, reset } = useForm({
@@ -31,17 +33,16 @@ const FormUpdate = ({ tags, dataEdit, postTag }) => {
   }, [value]);
 
   useEffect(() => {
-    setData('slug', slugTitle(data.title));
+    setData('slug', slugify(data.title));
   }, [data.title]);
-
-  const slugTitle = (value) => {
-    let replaceSpace = value.replace(" ", "-")
-    return replaceSpace.toLowercase()
-  }
 
   return (
     <form onSubmit={submit}>
       <div className="grid grid-cols-1 grid-cols-2 gap-4">
+        <div className="col-span-2">
+          <InputLabel htmlFor="title" className="mb-1" value="Status" />
+          <Status status={dataEdit.status} />
+        </div>
         <div className="">
           <InputLabel htmlFor="title" value="Post Title" />
 
@@ -75,7 +76,6 @@ const FormUpdate = ({ tags, dataEdit, postTag }) => {
 
         <div className="col-span-2">
           <InputLabel htmlFor="tag" value="Tag" />
-          {console.log(postTag, tags)}
 
           <Select
             isMulti

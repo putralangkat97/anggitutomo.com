@@ -30,4 +30,10 @@ class IndexController extends Controller
         $data = $this->postRepository->getPostById(slug: $slug);
         return Inertia::render('Home/View', $data);
     }
+
+    public function showByTag($tag)
+    {
+        $post_tag = $this->postRepository->showPostByTag($tag);
+        return Inertia::render('Home/PostTag', $post_tag);
+    }
 }

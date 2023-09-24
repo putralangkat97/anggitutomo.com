@@ -10,10 +10,10 @@ const Jumbotron = () => {
       <div className="flex lg:mt-16 items-center">
         <div className="w-full md:w-3/4 space-y-3 text-left">
           <h1 className="text-zinc-950 text-2xl lg:text-3xl font-bold">
-            Hi, I'm Anggit
+            Hello there! I'm Anggit
           </h1>
           <p className="text-2xl lg:text-3xl text-zinc-950">
-            I'm a fullstack developer who loves code with{' '}
+            I'm a fullstack developer who like to make things and who loves code with{' '}
             <span className="font-bold laravel hover:text-[#FB503B] transition-color duration-300">
               Laravel
             </span>
@@ -26,9 +26,6 @@ const Jumbotron = () => {
               Tailwind
             </span>
             ,{' '}
-            <span className="font-bold alpine hover:text-[#77C1D2] transition-color duration-300">
-              AlpineJS
-            </span>{' '}
             and{' '}
             <span className="font-bold react hover:text-[#61DAFB] transition-color duration-300">
               ReactJS

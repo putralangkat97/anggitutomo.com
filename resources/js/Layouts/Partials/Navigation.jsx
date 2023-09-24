@@ -72,13 +72,6 @@ export default function Navigation() {
                 >
                   Blog
                 </NavLink>
-                <NavLink
-                  href={'#'}
-                  //   active={url.startsWith('/blog')}
-                  className="hover:bg-zinc-950 hover:text-zinc-100 transition-colors duration-300 px-3 py-1"
-                >
-                  Project
-                </NavLink>
               </div>
             </div>
           </div>
@@ -93,13 +86,6 @@ export default function Navigation() {
                 className="hover:bg-zinc-950 hover:text-zinc-100 block transition-colors duration-300 px-3 py-1"
               >
                 Blog
-              </NavLink>
-              <NavLink
-                href={'#'}
-                // active={url.startsWith('/blog')}
-                className="hover:bg-zinc-950 hover:text-zinc-100 block transition-colors duration-300 px-3 py-1"
-              >
-                Projects
               </NavLink>
             </div>
           </div>

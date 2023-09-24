@@ -30,6 +30,7 @@ Route::middleware('auth')->group(function () {
                     Route::get('/post/{id}/edit', 'edit')->name('edit');
                     Route::patch('/post/{id}/edit', 'update')->name('update');
                     Route::patch('/post/{id}/publish', 'published')->name('publish');
+                    Route::patch('/post/{id}/draft', 'drafted')->name('draft');
                 });
 
             Route::controller(ProfileController::class)
@@ -42,10 +43,10 @@ Route::middleware('auth')->group(function () {
         });
 });
 
-Route::middleware('guest')->group(function () {
-    Route::name('post.')->controller(IndexController::class)->group(function () {
-        Route::get('/', 'index')->name('index');
-        Route::get('/blog', 'blog')->name('blog');
-        Route::get('/blog/{slug}', 'show')->name('show');
-    });
+
+Route::name('post.')->controller(IndexController::class)->group(function () {
+    Route::get('/', 'index')->name('index');
+    Route::get('/blog', 'blog')->name('blog');
+    Route::get('/blog/{slug}', 'show')->name('show');
+    Route::get('/blog/tag/{tag}', 'showByTag')->name('tag');
 });

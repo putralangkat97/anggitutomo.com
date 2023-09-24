@@ -1,5 +1,6 @@
 import HomeLayout from '@/Layouts/HomeLayout';
 import Post from './Partials/Post';
+import LabelTagLink from '@/Components/LabelTagLink';
 
 const View = ({ post }) => {
   return (
@@ -13,10 +14,17 @@ const View = ({ post }) => {
           />
         )}
       </div>
+      <div>
+        {post.tags.map((item, key) => (
+          <LabelTagLink value={item.name} key={key} className={`mr-2`} />
+        ))}
+      </div>
     </>
   );
 };
 
-View.layout = (page) => <HomeLayout children={page} head={page.props.post.title} />;
+View.layout = (page) => (
+  <HomeLayout children={page} head={page.props.post.title} />
+);
 
 export default View;

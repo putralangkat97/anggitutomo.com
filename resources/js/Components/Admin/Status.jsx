@@ -1,4 +1,4 @@
-const Status = ({ status = '' }) => {
+const Status = ({ status = '', className = '' }) => {
   let state = '';
   if (status == 'pending') {
     state = 'bg-orange-100 text-orange-500';
@@ -10,7 +10,7 @@ const Status = ({ status = '' }) => {
 
   return (
     <>
-      <span className={`px-2 py-1 ${state}`}>{status}</span>
+      <span className={`px-2 py-1 ${state} ${className}`}>{status}</span>
     </>
   );
 };

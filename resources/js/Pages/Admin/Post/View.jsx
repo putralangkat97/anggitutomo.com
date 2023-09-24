@@ -7,6 +7,7 @@ import SecondaryButton from '@/Components/SecondaryButton';
 import AdminLayout from '@/Layouts/AdminLayout';
 import { useForm } from '@inertiajs/react';
 import { useState } from 'react';
+import ReactMarkdown from 'react-markdown';
 
 const ViewPost = ({ post }) => {
   const { patch: publish, processing } = useForm();
@@ -37,20 +38,22 @@ const ViewPost = ({ post }) => {
           <StatusText status={post.status} />
         </div>
         <div className="space-x-2">
-          <EditLinkButton href={route('admin.post.edit', post.id)}>
-            Edit
-          </EditLinkButton>
           {post.status === 'draft' ? (
             <PrimaryButton onClick={confirmPublishPost}>Publish</PrimaryButton>
           ) : (
             <></>
           )}
+          <EditLinkButton href={route('admin.post.edit', post.id)}>
+            Edit
+          </EditLinkButton>
         </div>
       </div>
 
       <div className="bg-gray-50 shadow-sm p-6">
         <div className="text-lg font-bold text-zinc-900 mb-6">{post.title}</div>
-        <div className="mb-6">{post.content}</div>
+        <div className="mb-6">
+          <ReactMarkdown>{post.content}</ReactMarkdown>
+        </div>
       </div>
       <div className="bg-white shadow-sm p-6">
         {post.tags.map((item, key) => (
