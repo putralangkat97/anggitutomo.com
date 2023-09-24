@@ -27,7 +27,7 @@ interface PostInterface
     public function getPostById($post_id, $slug = null);
 
     /**
-     * Crate post
+     * Create post
      *
      * @method GET /backend/post/new
      * @return Array

@@ -59,6 +59,12 @@ const Sidebar = ({ user }) => {
               Post
             </NavLink>
             <NavLink
+              href={route('admin.tag.index')}
+              active={url.startsWith('/backend/tag')}
+            >
+              Tag
+            </NavLink>
+            <NavLink
               href={route('admin.profile.edit')}
               active={url.startsWith('/backend/profile')}
             >
