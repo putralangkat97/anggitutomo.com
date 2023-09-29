@@ -31,7 +31,10 @@ class PostRepository implements PostInterface
 
     public function getPostById($post_id = null, $slug = null)
     {
-        $post = Post::query()->with('tags');
+        $post = Post::query()->with(
+            'tags',
+            fn ($query) => $query->where('is_active', 1)
+        );
         if ($post_id) {
             $post = $post->where('id', $post_id)->first();
         }
@@ -46,7 +49,7 @@ class PostRepository implements PostInterface
 
     public function createPost()
     {
-        $tags = Tag::select(['id', 'name'])->get();
+        $tags = Tag::select(['id', 'name'])->where('is_active', 1)->get();
         $tags = $tags->map(function ($item) {
             return [
                 'value' => $item->id,
@@ -92,7 +95,7 @@ class PostRepository implements PostInterface
 
     public function editPost($post_id)
     {
-        $tags = Tag::select(['id', 'name'])->get();
+        $tags = Tag::select(['id', 'name'])->where('is_active', 1)->get();
         $tags = $tags->map(function ($item) {
             return [
                 'value' => $item->id,
