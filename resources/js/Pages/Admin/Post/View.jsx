@@ -4,6 +4,7 @@ import LabelTag from '@/Components/LabelTag';
 import Modal from '@/Components/Modal';
 import PrimaryButton from '@/Components/PrimaryButton';
 import SecondaryButton from '@/Components/SecondaryButton';
+import SecondaryLinkButton from '@/Components/SecondaryLinkButton';
 import AdminLayout from '@/Layouts/AdminLayout';
 import { useForm } from '@inertiajs/react';
 import { useState } from 'react';
@@ -46,6 +47,9 @@ const ViewPost = ({ post }) => {
           <EditLinkButton href={route('admin.post.edit', post.id)}>
             Edit
           </EditLinkButton>
+          <SecondaryLinkButton href={route('admin.post.index')}>
+            Back
+          </SecondaryLinkButton>
         </div>
       </div>
 
@@ -71,7 +75,7 @@ const ViewPost = ({ post }) => {
             <SecondaryButton onClick={closeModal}>Cancel</SecondaryButton>
 
             <PrimaryButton className="ml-3" disabled={processing}>
-              Publish
+              Yes, Publish now!
             </PrimaryButton>
           </div>
         </form>

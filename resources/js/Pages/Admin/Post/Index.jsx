@@ -23,18 +23,22 @@ const Post = ({ posts }) => {
             <>
               <div className="bg-white flex flex-col shadow-sm p-4" key={key}>
                 <div className="flex justify-between items-center">
-                  <span>{item.title}</span>
+                  <span className="text-zinc-950 hover:text-orange-500 hover:underline transition-all duration-200">
+                    <Link href={route('admin.post.show', item.id)}>
+                      {item.title}
+                    </Link>
+                  </span>
                   <div className="flex space-x-2">
                     <div className="flex justify-center items-center space-x-2">
                       <Link
                         href={route('admin.post.show', item.id)}
-                        className="text-zinc-900 hover:text-orange-500 transition-colors duration-200"
+                        className="text-zinc-950 hover:text-orange-600 transition-colors duration-200"
                       >
                         <EyeIcon className={'w-5 h-5'} />
                       </Link>
                       <Link
                         href={route('admin.post.edit', item.id)}
-                        className="text-zinc-900 hover:text-blue-500 transition-colors duration-200"
+                        className="text-zinc-950 hover:text-orange-600 transition-colors duration-200"
                       >
                         <EditIcon className={'w-5 h-5'} />
                       </Link>

@@ -9,14 +9,13 @@ const Sidebar = ({ user }) => {
 
   return (
     <>
-      <aside className="fixed lg:flex flex-col lg:flex-row lg:min-h-screen w-full lg:w-80 bg-gray-200">
+      <aside className="fixed lg:flex flex-col lg:flex-row lg:min-h-screen w-full lg:w-80 bg-white">
         <div className="flex flex-col w-full text-gray-700 flex-shrink-0 border-b lg:border-0">
           <div className="flex-shrink-0 px-4 md:px-6 lg:px-8 py-4 lg:py-8 flex flex-row items-center justify-between">
             <Link
               href={route('admin.dashboard')}
-              className="text-lg font-semibold tracking-widest text-gray-900 uppercase focus:outline-none focus:shadow-outline"
+              className="text-lg font-semibold tracking-widest text-zinc-950 uppercase focus:outline-none focus:shadow-outline"
             >
-              <ApplicationLogo className="w-8 h-8 inline -mt-1 mr-3" />
               anggitutomo.com
             </Link>
             <button

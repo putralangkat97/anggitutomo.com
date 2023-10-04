@@ -95,7 +95,7 @@ export default function DeleteUserForm({ className = '' }) {
             <SecondaryButton onClick={closeModal}>Cancel</SecondaryButton>
 
             <DangerButton className="ml-3" disabled={processing}>
-              Delete Account
+              Yes, Delete Account!
             </DangerButton>
           </div>
         </form>

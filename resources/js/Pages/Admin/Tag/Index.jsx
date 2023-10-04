@@ -27,7 +27,7 @@ const Tag = ({ tags }) => {
                     <div className="flex justify-center items-center space-x-2">
                       <Link
                         href={route('admin.tag.edit', item.id)}
-                        className="text-zinc-900 hover:text-blue-500 transition-colors duration-200"
+                        className="text-zinc-950 hover:text-orange-600 transition-colors duration-200"
                       >
                         <EditIcon className={'w-5 h-5'} />
                       </Link>
