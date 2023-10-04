@@ -14,41 +14,32 @@ const Tag = ({ tags }) => {
         </PrimaryLinkButton>
       </div>
 
-      <table className="w-full overflow-hidden shadow-sm">
-        <thead>
-          <tr className="bg-white border-b">
-            <th className="text-left p-6">Tag Name</th>
-            <th className="text-center p-6">Status</th>
-            <th className="text-center p-6">Action</th>
-          </tr>
-        </thead>
-        <tbody>
-          {tags.data.length > 0 &&
-            tags.data.map((item, key) => (
-              <tr className="bg-gray-50" key={key}>
-                <td className="text-left p-6">{item.name}</td>
-                <td className="text-center p-6">
-                  {item.is_active === 1 ? (
-                    <span className="text-green-500">Active</span>
-                  ) : (
-                    <span className="text-zinc-500">Disabled</span>
-                  )}
-                </td>
-                <td className="text-center p-6">
-                  <div className="flex justify-center items-center space-x-2">
-                    <Link
-                      href={route('admin.tag.edit', item.id)}
-                      className="text-zinc-900 hover:text-blue-500 transition-colors duration-200"
-                    >
-                      <EditIcon className={'w-5 h-5'} />
-                    </Link>
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+        {tags.data.length > 0 &&
+          tags.data.map((item, key) => (
+            <>
+              <div className="bg-white flex flex-col shadow-sm p-4" key={key}>
+                <div className="flex justify-between items-center">
+                  <span>
+                    {item.is_active} {item.name}
+                  </span>
+                  <div className="flex space-x-2">
+                    <div className="flex justify-center items-center space-x-2">
+                      <Link
+                        href={route('admin.tag.edit', item.id)}
+                        className="text-zinc-900 hover:text-blue-500 transition-colors duration-200"
+                      >
+                        <EditIcon className={'w-5 h-5'} />
+                      </Link>
+                    </div>
                   </div>
-                </td>
-              </tr>
-            ))}
-        </tbody>
-      </table>
-      <Pagination class="mt-6" links={tags.links} />
+                </div>
+              </div>
+            </>
+          ))}
+      </div>
+
+      {tags.length > 10 && <Pagination class="mt-6" links={tags.links} />}
     </>
   );
 };

@@ -5,8 +5,7 @@ import AdminLayout from '@/Layouts/AdminLayout';
 
 const Edit = ({ auth, mustVerifyEmail, status }) => {
   return (
-    // <div className="py-12">
-    <div className="grid grid-cols-1 md:grid-cols-2 gap-3 md:gap-6">
+    <div className="grid grid-cols-1 lg:grid-cols-2 gap-3 md:gap-6">
       <div className="p-4 sm:p-8 bg-white shadow">
         <UpdateProfileInformationForm
           mustVerifyEmail={mustVerifyEmail}
@@ -19,11 +18,10 @@ const Edit = ({ auth, mustVerifyEmail, status }) => {
         <UpdatePasswordForm className="max-w-xl" />
       </div>
 
-      <div className="p-4 sm:p-8 bg-white shadow md:col-span-2">
+      <div className="p-4 sm:p-8 bg-white shadow lg:col-span-2">
         <DeleteUserForm className="" />
       </div>
     </div>
-    // </div>
   );
 };
 

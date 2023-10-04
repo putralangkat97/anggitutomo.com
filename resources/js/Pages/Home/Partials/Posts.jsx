@@ -1,7 +1,7 @@
 import { Link } from '@inertiajs/react';
 import { ReactMarkdown } from 'react-markdown/lib/react-markdown';
 
-const Posts = ({ title, content, slug }) => {
+const Posts = ({ title, slug }) => {
   return (
     <>
       <div className="text-zinc-950">

@@ -9,7 +9,7 @@ export default function Pagination({ links }) {
   }
 
   return (
-    links.length > 3 && (
+    links.length > 0 && (
       <div className="mb-4">
         <div className="flex flex-wrap mt-8">
           {links.map((link, key) =>
