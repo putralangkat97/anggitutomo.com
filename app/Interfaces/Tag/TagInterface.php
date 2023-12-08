@@ -2,7 +2,7 @@
 
 namespace App\Interfaces\Tag;
 
-use Illuminate\Http\Request;
+use App\Http\Requests\TagRequest;
 
 interface TagInterface
 {
@@ -17,11 +17,11 @@ interface TagInterface
     /**
      * Save tag
      *
-     * @param Request $request
+     * @param TagRequest $request
      * @method POST /backend/tag/new
      * @return Boolean
      */
-    public function storeTag(Request $request);
+    public function storeTag(TagRequest $request);
 
     /**
      * Edit tag
@@ -35,12 +35,12 @@ interface TagInterface
     /**
      * Update tag
      *
-     * @param Request $request
+     * @param TagRequest $request
      * @param int $tag_id
      * @method PATCH /backend/tag/$tag_id/edit
      * @return Boolean
      */
-    public function updateTag(Request $request, $tag_id);
+    public function updateTag(TagRequest $request, $tag_id);
 
     /**
      * Hide tag

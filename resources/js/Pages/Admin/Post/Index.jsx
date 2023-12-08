@@ -17,56 +17,48 @@ const Post = ({ posts }) => {
         </PrimaryLinkButton>
       </div>
 
-      <table className="w-full overflow-hidden shadow-sm">
-        <thead>
-          <tr className="bg-white border-b">
-            <th className="text-left p-6">Title</th>
-            <th className="text-left p-6">Published At</th>
-            <th className="text-center p-6">Status</th>
-            <th className="text-center p-6">Action</th>
-          </tr>
-        </thead>
-        <tbody>
-          {posts.data.length > 0 &&
-            posts.data.map((item, key) => (
-              <tr className="bg-gray-50" key={key}>
-                <td className="text-left p-6">
-                  <Link
-                    href={route('admin.post.show', item.id)}
-                    className="text-zinc-900 hover:text-orange-500 transition-colors duration-200"
-                  >
-                    {item.title}
-                  </Link>
-                </td>
-                <td className="text-left p-6">
-                  {item.status !== 'published'
-                    ? '-'
-                    : moment(item.updated_at).format('DD/MM/YYYY hh:mm A')}
-                </td>
-                <td className="text-center p-6">
-                  <Status status={item.status} />
-                </td>
-                <td className="text-center p-6">
-                  <div className="flex justify-center items-center space-x-2">
-                    <Link
-                      href={route('admin.post.show', item.id)}
-                      className="text-zinc-900 hover:text-orange-500 transition-colors duration-200"
-                    >
-                      <EyeIcon className={'w-5 h-5'} />
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+        {posts.data.length > 0 &&
+          posts.data.map((item, key) => (
+            <>
+              <div className="bg-white flex flex-col shadow-sm p-4" key={key}>
+                <div className="flex justify-between items-center">
+                  <span className="text-zinc-950 hover:text-orange-500 hover:underline transition-all duration-200">
+                    <Link href={route('admin.post.show', item.id)}>
+                      {item.title}
                     </Link>
-                    <Link
-                      href={route('admin.post.edit', item.id)}
-                      className="text-zinc-900 hover:text-blue-500 transition-colors duration-200"
-                    >
-                      <EditIcon className={'w-5 h-5'} />
-                    </Link>
+                  </span>
+                  <div className="flex space-x-2">
+                    <div className="flex justify-center items-center space-x-2">
+                      <Link
+                        href={route('admin.post.show', item.id)}
+                        className="text-zinc-950 hover:text-orange-500 transition-colors duration-200"
+                      >
+                        <EyeIcon className={'w-5 h-5'} />
+                      </Link>
+                      <Link
+                        href={route('admin.post.edit', item.id)}
+                        className="text-zinc-950 hover:text-orange-500 transition-colors duration-200"
+                      >
+                        <EditIcon className={'w-5 h-5'} />
+                      </Link>
+                    </div>
                   </div>
-                </td>
-              </tr>
-            ))}
-        </tbody>
-      </table>
-      <Pagination class="mt-6" links={posts.links} />
+                </div>
+                <small className="flex justify-between items-center mt-4">
+                  <span className="text-gray-500">
+                    Published at:{' '}
+                    {item.status !== 'published'
+                      ? '-'
+                      : moment(item.updated_at).format('DD/MM/YYYY hh:mm A')}
+                  </span>
+                  <Status status={item.status} />
+                </small>
+              </div>
+            </>
+          ))}
+      </div>
+      {posts.length > 10 && <Pagination class="mt-6" links={posts.links} />}
     </>
   );
 };

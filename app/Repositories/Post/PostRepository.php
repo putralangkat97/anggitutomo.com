@@ -9,19 +9,26 @@ use App\Models\Tag;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Log;
+use Illuminate\Support\Str;
 use Throwable;
 
 class PostRepository implements PostInterface
 {
     public function getAllPosts($home = false)
     {
-        $posts = Post::query();
+        $posts = Post::select(['id', 'title', 'status', 'updated_at', 'slug']);
         if ($home == true) {
             $posts = $posts->where('status', 'published')
                 ->take(6)->get();
         } else {
-            $posts = $posts->select(['id', 'title', 'status', 'updated_at'])
-                ->paginate(10);
+            $posts = $posts->paginate(10)->through(function ($query) {
+                return [
+                    'id' => $query->id,
+                    'title' => Str::limit($query->title, 13),
+                    'status' => $query->status,
+                    'updated_at' => $query->updated_at
+                ];
+            });
         }
 
         return [

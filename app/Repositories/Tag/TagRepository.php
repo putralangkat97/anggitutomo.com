@@ -13,8 +13,17 @@ class TagRepository implements TagInterface
 {
     public function getAllTags()
     {
+        $tags = Tag::select(['id', 'name', 'is_active'])->paginate(10)
+            ->through(function ($query) {
+                return [
+                    'id' => $query->id,
+                    'name' => $query->name,
+                    'is_active' => $query->is_active ? '✅' : '❌',
+                ];
+            });
+
         return [
-            'tags' => Tag::paginate(10),
+            'tags' => $tags,
         ];
     }
 

@@ -61,7 +61,7 @@ const EditPost = ({ tags, post, postTag }) => {
             <SecondaryButton onClick={closeModal}>Cancel</SecondaryButton>
 
             <PrimaryButton className="ml-3" disabled={processing}>
-              Draft
+              Yes, Draft it!
             </PrimaryButton>
           </div>
         </form>

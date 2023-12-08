@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\TagRequest;
 use App\Repositories\Tag\TagRepository;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Redirect;
@@ -26,7 +27,7 @@ class TagController extends Controller
         return Inertia::render('Admin/Tag/Create');
     }
 
-    public function store(Request $request)
+    public function store(TagRequest $request)
     {
         if ($this->tagRepository->storeTag($request)) {
             return Redirect::route('admin.tag.index');
@@ -39,7 +40,7 @@ class TagController extends Controller
         return Inertia::render('Admin/Tag/Edit', $data);
     }
 
-    public function update(Request $request, $id)
+    public function update(TagRequest $request, $id)
     {
         if ($this->tagRepository->updateTag($request, $id)) {
             return Redirect::route('admin.tag.index');
