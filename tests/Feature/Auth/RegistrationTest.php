@@ -5,7 +5,11 @@ use App\Providers\RouteServiceProvider;
 test('registration screen can be rendered', function () {
     $response = $this->get('authenticated-user/register');
 
-    $response->assertStatus(200);
+    if (config('feature.feature.blog') == true) {
+        $response->assertStatus(200);
+    } else {
+        $response->assertStatus(404);
+    }
 });
 
 test('new users can register', function () {
@@ -16,6 +20,10 @@ test('new users can register', function () {
         'password_confirmation' => 'password',
     ]);
 
-    $this->assertAuthenticated();
-    $response->assertRedirect(RouteServiceProvider::HOME);
+    if (config('feature.feature.blog') == true) {
+        $this->assertAuthenticated();
+        $response->assertRedirect(RouteServiceProvider::HOME);
+    } else {
+        $response->assertStatus(404);
+    }
 });
