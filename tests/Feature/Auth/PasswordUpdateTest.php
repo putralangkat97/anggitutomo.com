@@ -15,11 +15,15 @@ test('password can be updated', function () {
             'password_confirmation' => 'new-password',
         ]);
 
-    $response
-        ->assertSessionHasNoErrors()
-        ->assertRedirect('/backend/profile');
+    if (config('feature.feature.blog') == true) {
+        $response
+            ->assertSessionHasNoErrors()
+            ->assertRedirect('/backend/profile');
 
-    $this->assertTrue(Hash::check('new-password', $user->refresh()->password));
+        $this->assertTrue(Hash::check('new-password', $user->refresh()->password));
+    } else {
+        $response->assertStatus(404);
+    }
 });
 
 test('correct password must be provided to update password', function () {
@@ -34,7 +38,11 @@ test('correct password must be provided to update password', function () {
             'password_confirmation' => 'new-password',
         ]);
 
-    $response
-        ->assertSessionHasErrors('current_password')
-        ->assertRedirect('/backend/profile');
+    if (config('feature.feature.blog') == true) {
+        $response
+            ->assertSessionHasErrors('current_password')
+            ->assertRedirect('/backend/profile');
+    } else {
+        $response->assertStatus(404);
+    }
 });

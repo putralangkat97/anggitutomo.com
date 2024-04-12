@@ -7,7 +7,11 @@ test('confirm password screen can be rendered', function () {
 
     $response = $this->actingAs($user)->get('authenticated-user/confirm-password');
 
-    $response->assertStatus(200);
+    if (config('feature.feature.blog') === true) {
+        $response->assertStatus(200);
+    } else {
+        $response->assertStatus(404);
+    }
 });
 
 test('password can be confirmed', function () {
@@ -17,8 +21,12 @@ test('password can be confirmed', function () {
         'password' => 'password',
     ]);
 
-    $response->assertRedirect();
-    $response->assertSessionHasNoErrors();
+    if (config('feature.feature.blog') === true) {
+        $response->assertRedirect();
+        $response->assertSessionHasNoErrors();
+    } else {
+        $response->assertStatus(404);
+    }
 });
 
 test('password is not confirmed with invalid password', function () {
@@ -28,5 +36,9 @@ test('password is not confirmed with invalid password', function () {
         'password' => 'wrong-password',
     ]);
 
-    $response->assertSessionHasErrors();
+    if (config('feature.feature.blog') === true) {
+        $response->assertSessionHasErrors();
+    } else {
+        $response->assertStatus(404);
+    }
 });

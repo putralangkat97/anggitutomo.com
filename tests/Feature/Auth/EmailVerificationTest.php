@@ -13,7 +13,11 @@ test('email verification screen can be rendered', function () {
 
     $response = $this->actingAs($user)->get('authenticated-user/verify-email');
 
-    $response->assertStatus(200);
+    if (config('feature.feature.blog') === true) {
+        $response->assertStatus(200);
+    } else {
+        $response->assertStatus(404);
+    }
 });
 
 test('email can be verified', function () {
@@ -23,17 +27,21 @@ test('email can be verified', function () {
 
     Event::fake();
 
-    $verificationUrl = URL::temporarySignedRoute(
-        'verification.verify',
-        now()->addMinutes(60),
-        ['id' => $user->id, 'hash' => sha1($user->email)]
-    );
+    if (config('feature.feature.blog') === true) {
+        $verificationUrl = URL::temporarySignedRoute(
+            'verification.verify',
+            now()->addMinutes(60),
+            ['id' => $user->id, 'hash' => sha1($user->email)]
+        );
 
-    $response = $this->actingAs($user)->get($verificationUrl);
+        $response = $this->actingAs($user)->get($verificationUrl);
 
-    Event::assertDispatched(Verified::class);
-    expect($user->fresh()->hasVerifiedEmail())->toBeTrue();
-    $response->assertRedirect(RouteServiceProvider::HOME.'?verified=1');
+        Event::assertDispatched(Verified::class);
+        expect($user->fresh()->hasVerifiedEmail())->toBeTrue();
+        $response->assertRedirect(RouteServiceProvider::HOME . '?verified=1');
+    } else {
+        $this->assertSame(config('feature.feature.blog'), false);
+    }
 });
 
 test('email is not verified with invalid hash', function () {
@@ -41,13 +49,17 @@ test('email is not verified with invalid hash', function () {
         'email_verified_at' => null,
     ]);
 
-    $verificationUrl = URL::temporarySignedRoute(
-        'verification.verify',
-        now()->addMinutes(60),
-        ['id' => $user->id, 'hash' => sha1('wrong-email')]
-    );
+    if (config('feature.feature.blog') === true) {
+        $verificationUrl = URL::temporarySignedRoute(
+            'verification.verify',
+            now()->addMinutes(60),
+            ['id' => $user->id, 'hash' => sha1('wrong-email')]
+        );
 
-    $this->actingAs($user)->get($verificationUrl);
+        $this->actingAs($user)->get($verificationUrl);
 
-    expect($user->fresh()->hasVerifiedEmail())->toBeFalse();
+        expect($user->fresh()->hasVerifiedEmail())->toBeFalse();
+    } else {
+        $this->assertSame(config('feature.feature.blog'), false);
+    }
 });
