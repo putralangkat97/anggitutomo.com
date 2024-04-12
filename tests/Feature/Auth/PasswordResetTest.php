@@ -7,7 +7,11 @@ use Illuminate\Support\Facades\Notification;
 test('reset password link screen can be rendered', function () {
     $response = $this->get('authenticated-user/forgot-password');
 
-    $response->assertStatus(200);
+    if (config('feature.feature.blog') == true) {
+        $response->assertStatus(200);
+    } else {
+        $response->assertStatus(404);
+    }
 });
 
 test('reset password link can be requested', function () {
@@ -15,9 +19,13 @@ test('reset password link can be requested', function () {
 
     $user = User::factory()->create();
 
-    $this->post('authenticated-user/forgot-password', ['email' => $user->email]);
+    if (config('feature.feature.blog') == true) {
+        $this->post('authenticated-user/forgot-password', ['email' => $user->email]);
 
-    Notification::assertSentTo($user, ResetPassword::class);
+        Notification::assertSentTo($user, ResetPassword::class);
+    } else {
+        $this->assertSame(config('feature.feature.blog'), false);
+    }
 });
 
 test('reset password screen can be rendered', function () {
@@ -25,15 +33,19 @@ test('reset password screen can be rendered', function () {
 
     $user = User::factory()->create();
 
-    $this->post('authenticated-user/forgot-password', ['email' => $user->email]);
+    if (config('feature.feature.blog') == true) {
+        $this->post('authenticated-user/forgot-password', ['email' => $user->email]);
 
-    Notification::assertSentTo($user, ResetPassword::class, function ($notification) {
-        $response = $this->get('authenticated-user/reset-password/'.$notification->token);
+        Notification::assertSentTo($user, ResetPassword::class, function ($notification) {
+            $response = $this->get('authenticated-user/reset-password/' . $notification->token);
 
-        $response->assertStatus(200);
+            $response->assertStatus(200);
 
-        return true;
-    });
+            return true;
+        });
+    } else {
+        $this->assertSame(config('feature.feature.blog'), false);
+    }
 });
 
 test('password can be reset with valid token', function () {
@@ -41,18 +53,22 @@ test('password can be reset with valid token', function () {
 
     $user = User::factory()->create();
 
-    $this->post('authenticated-user/forgot-password', ['email' => $user->email]);
+    if (config('feature.feature.blog') == true) {
+        $this->post('authenticated-user/forgot-password', ['email' => $user->email]);
 
-    Notification::assertSentTo($user, ResetPassword::class, function ($notification) use ($user) {
-        $response = $this->post('authenticated-user/reset-password', [
-            'token' => $notification->token,
-            'email' => $user->email,
-            'password' => 'password',
-            'password_confirmation' => 'password',
-        ]);
+        Notification::assertSentTo($user, ResetPassword::class, function ($notification) use ($user) {
+            $response = $this->post('authenticated-user/reset-password', [
+                'token' => $notification->token,
+                'email' => $user->email,
+                'password' => 'password',
+                'password_confirmation' => 'password',
+            ]);
 
-        $response->assertSessionHasNoErrors();
+            $response->assertSessionHasNoErrors();
 
-        return true;
-    });
+            return true;
+        });
+    } else {
+        $this->assertSame(config('feature.feature.blog'), false);
+    }
 });

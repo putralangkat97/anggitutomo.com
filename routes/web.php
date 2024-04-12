@@ -7,9 +7,11 @@ use App\Http\Controllers\Home\IndexController;
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
 
-require __DIR__ . '/auth.php';
+if (config('feature.feature.blog') === true) {
+    require __DIR__ . '/auth.php';
+}
 
-Route::middleware('auth')->group(function () {
+Route::middleware(['auth', 'blog'])->group(function () {
     Route::get('/dashboard', function () {
         return redirect()->route('admin.dashboard');
     });
@@ -61,7 +63,9 @@ Route::middleware('auth')->group(function () {
 
 Route::name('post.')->controller(IndexController::class)->group(function () {
     Route::get('/', 'index')->name('index');
-    Route::get('/blog', 'blog')->name('blog');
-    Route::get('/blog/{slug}', 'show')->name('show');
-    Route::get('/blog/tag/{tag}', 'showByTag')->name('tag');
+    Route::middleware('blog')->group(function () {
+        Route::get('/blog', 'blog')->name('blog');
+        Route::get('/blog/{slug}', 'show')->name('show');
+        Route::get('/blog/tag/{tag}', 'showByTag')->name('tag');
+    });
 });

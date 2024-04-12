@@ -8,7 +8,11 @@ test('profile page is displayed', function () {
     $response = $this->actingAs($user)
         ->get('/backend/profile');
 
-    $response->assertOk();
+    if (config('feature.feature.blog') === true) {
+        $response->assertOk();
+    } else {
+        $response->assertStatus(404);
+    }
 });
 
 test('profile information can be updated', function () {
@@ -20,14 +24,18 @@ test('profile information can be updated', function () {
             'email' => 'test@example.com',
         ]);
 
-    $response->assertSessionHasNoErrors()
-        ->assertRedirect('/backend/profile');
+    if (config('feature.feature.blog') === true) {
+        $response->assertSessionHasNoErrors()
+            ->assertRedirect('/backend/profile');
 
-    $user->refresh();
+        $user->refresh();
 
-    $this->assertSame('Test User', $user->name);
-    $this->assertSame('test@example.com', $user->email);
-    $this->assertNull($user->email_verified_at);
+        $this->assertSame('Test User', $user->name);
+        $this->assertSame('test@example.com', $user->email);
+        $this->assertNull($user->email_verified_at);
+    } else {
+        $response->assertStatus(404);
+    }
 });
 
 test('email verification status is unchanged when the email address is unchanged', function () {
@@ -39,10 +47,14 @@ test('email verification status is unchanged when the email address is unchanged
             'email' => $user->email,
         ]);
 
-    $response->assertSessionHasNoErrors()
-        ->assertRedirect('/backend/profile');
+    if (config('feature.feature.blog') === true) {
+        $response->assertSessionHasNoErrors()
+            ->assertRedirect('/backend/profile');
 
-    $this->assertNotNull($user->refresh()->email_verified_at);
+        $this->assertNotNull($user->refresh()->email_verified_at);
+    } else {
+        $response->assertStatus(404);
+    }
 });
 
 test('user can delete their account', function () {
@@ -53,11 +65,15 @@ test('user can delete their account', function () {
             'password' => 'password',
         ]);
 
-    $response->assertSessionHasNoErrors()
-        ->assertRedirect('/');
+    if (config('feature.feature.blog') === true) {
+        $response->assertSessionHasNoErrors()
+            ->assertRedirect('/');
 
-    $this->assertGuest();
-    $this->assertNull($user->fresh());
+        $this->assertGuest();
+        $this->assertNull($user->fresh());
+    } else {
+        $response->assertStatus(404);
+    }
 });
 
 test('correct password must be provided to delete account', function () {
@@ -69,8 +85,12 @@ test('correct password must be provided to delete account', function () {
             'password' => 'wrong-password',
         ]);
 
-    $response->assertSessionHasErrors('password')
-        ->assertRedirect('/backend/profile');
+    if (config('feature.feature.blog') === true) {
+        $response->assertSessionHasErrors('password')
+            ->assertRedirect('/backend/profile');
 
-    $this->assertNotNull($user->fresh());
+        $this->assertNotNull($user->fresh());
+    } else {
+        $response->assertStatus(404);
+    }
 });
