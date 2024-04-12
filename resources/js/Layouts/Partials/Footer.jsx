@@ -4,9 +4,9 @@ import GithubIcon from '@/Components/Icons/Github';
 import InstagramIcon from '@/Components/Icons/Instagram';
 import { Link } from '@inertiajs/react';
 
-const Footer = () => {
+const Footer = ({ blog }) => {
   return (
-    <footer className="flex flex-col lg:flex-row items-center lg:space-y-0 space-y-6 lg:justify-between mt-20 mb-8 mx-8">
+    <footer className={`flex flex-col md:flex-row items-center lg:space-y-0 space-y-6 md:justify-between mt-20 mb-8 mx-8`}>
       <div className="text-zinc-950">
         <div className="flex md:flex-row flex-col items-center">
           <p className="text-lg">&copy; 2023 <a href={"/"} className='text-orange-500 hover:underline transition-all duration-300'>Anggit Utomo</a>.</p>

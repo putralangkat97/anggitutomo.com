@@ -10,12 +10,14 @@ use Inertia\Inertia;
 class IndexController extends Controller
 {
     public function __construct(
-        protected PostRepository $postRepository
-    ) {}
+        protected PostRepository $postRepository,
+    ) {
+    }
 
     public function index()
     {
         $data = $this->postRepository->getAllPosts(true);
+        $data['feature_blog'] = config('feature.feature.blog');
         return Inertia::render('Home/Index', $data);
     }
 

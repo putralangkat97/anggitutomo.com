@@ -7,7 +7,7 @@ import TailwindIcon from '@/Components/Icons/Tailwind';
 const Jumbotron = () => {
   return (
     <>
-      <div className="flex lg:mt-16 items-center">
+      <div className="flex lg:flex-row flex-col lg:mt-16 items-start lg:items-center">
         <div className="w-full md:w-3/4 space-y-3 text-left">
           <h1 className="text-zinc-950 text-2xl lg:text-3xl font-bold">
             Hello there! I'm Anggit
@@ -33,23 +33,23 @@ const Jumbotron = () => {
           </p>
         </div>
 
-        {/* <div className="lg:w-1/2 hidden lg:flex space-x-5 lg:ml-4 px-5 py-2">
+        <div className="w-1/2 flex flex-row space-x-2 lg:space-x-5 mt-8 lg:mt-0 lg:ml-4 lg:px-5 lg:py-2">
           <div className="py-2 self-center hover:opacity-75 transition-opacity duration-300">
-            <LaravelIcon />
+            <LaravelIcon className='h-[2.5rem]' />
           </div>
           <div className="py-2 self-center hover:opacity-75 transition-opacity duration-300">
-            <LivewireIcon />
+            <LivewireIcon className='h-[2.5rem]' />
           </div>
           <div className="py-2 self-center hover:opacity-75 transition-opacity duration-300">
-            <TailwindIcon />
+            <TailwindIcon className='h-[2.5rem]' />
           </div>
           <div className="py-2 self-center hover:opacity-75 transition-opacity duration-300">
-            <AlpineIcon />
+            <AlpineIcon className='h-[2.5rem]' />
           </div>
           <div className="py-2 self-center hover:opacity-75 transition-opacity duration-300">
-            <ReactIcon />
+            <ReactIcon className='h-[2.5rem]' />
           </div>
-        </div> */}
+        </div>
       </div>
     </>
   );
