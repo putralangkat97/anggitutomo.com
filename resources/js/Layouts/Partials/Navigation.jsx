@@ -8,14 +8,14 @@ export default function Navigation() {
 
   return (
     <>
-      <nav className="bg-white mb-10 lg:mt-5">
+      <nav className="bg-transparent md:mb-10 pt-4">
         <div className="relative flex h-16 items-center justify-between">
           <div className="flex flex-1 items-center justify-start">
             <div className="relative">
               <div>
                 <NavLink
                   href={route('post.index')}
-                  className="hover:opacity-80 transition-opacity duration-300 text-2xl"
+                  className="hover:opacity-80 transition-opacity duration-150 text-2xl"
                 >
                   anggitutomo.com
                 </NavLink>
