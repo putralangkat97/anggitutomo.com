@@ -22,10 +22,12 @@
   },
   "dependencies": {
     "@uiw/react-md-editor": "^3.23.5",
+    "caniuse-lite": "^1.0.30001642",
     "moment": "^2.29.4",
     "react-markdown": "^8.0.7",
     "react-select": "^5.7.4",
     "react-syntax-highlighter": "^15.5.0",
-    "react-url-slugify": "^0.0.1"
+    "react-url-slugify": "^0.0.1",
+    "update-browserslist-db": "latest"
   }
 }
